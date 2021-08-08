@@ -1,0 +1,55 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 80px;
+  transition: all 0.3s;
+  &-link {
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+  }
+}
+.contain {
+  fa-icon {
+    display: none;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .nav {
+    position: absolute;
+    top: 0%;
+    right: -500px;
+    width: 200px;
+    height: 100vh;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 30px;
+    padding: 30px;
+    background-color: black;
+  }
+  .contain {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100px;
+    fa-icon {
+      display: block;
+      font-size: 30px;
+      margin-right: 40px;
+    }
+  }
+}
+@media screen and (max-width: 420px) {
+  .contain {
+    fa-icon {
+      margin-right: 20px;
+    }
+  }
+}
+.showNav {
+  right: -250px;
+}

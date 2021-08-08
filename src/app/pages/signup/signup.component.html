@@ -1,0 +1,99 @@
+<div class="contain">
+  <div class="signup">
+    <div class="signup-icon">
+      <img [src]="wave" alt="" />
+    </div>
+    <div class="signup-title">Create an account</div>
+    <form
+      action=""
+      class="form"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="signUpForm"
+    >
+      <div class="form-item">
+        <div class="label"><label for="email">Email</label></div>
+        <div class="input">
+          <!-- (keydown.space)="$event.preventDefault();"  ==> Prevent user to enter space in textbox -->
+          <input
+            type="text"
+            formControlName="email"
+            id="email"
+            placeholder="Email"
+          />
+
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('email')?.errors &&
+              signUpForm.get('email')?.touched
+            "
+          >
+            <span>Error</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="label">
+          <label for="password">Password</label>
+          <div class="label-icon" *ngIf="checkPassword">
+            <fa-icon [icon]="faLock" [style.color]="bar0"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="bar0"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="bar1"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="bar1"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="bar2"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="bar2"></fa-icon>
+          </div>
+        </div>
+
+        <div class="input">
+          <input
+            type="password"
+            formControlName="password"
+            id="password"
+            placeholder="Password"
+            [(ngModel)]="checkPassword"
+            (ngModelChange)="checkStrongPassword($event)"
+          />
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('password')?.errors &&
+              signUpForm.get('password')?.touched
+            "
+          >
+            <span>Error</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="label"><label for="confirm">Confirm Password</label></div>
+        <div class="input">
+          <input
+            type="password"
+            formControlName="confirm"
+            id="confirm"
+            placeholder="Confirm Password"
+          />
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('confirm')?.errors &&
+              signUpForm.get('confirm')?.touched
+            "
+          >
+            <span>Error</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-item groupBtn">
+        <p></p>
+        <div class="action">
+          <button type="submit" class="btn">Create account</button>
+          <span>Already an account ? 
+            <a routerLink="/login"> Log In</a>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

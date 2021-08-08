@@ -1,0 +1,20 @@
+<div class="contain">
+  <ul class="nav" id="nav" [class.showNav]="toggleNav">
+    <li class="nav-item">
+      <a routerLink="/home" class="nav-link" (click)="toggleNav=!toggleNav">Home</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/about" class="nav-link" (click)="toggleNav=!toggleNav">About</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/music" class="nav-link" (click)="toggleNav=!toggleNav">Music</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/Contact" class="nav-link" (click)="toggleNav=!toggleNav">Contact</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/User" class="nav-link" (click)="toggleNav=!toggleNav">User</a>
+    </li>
+  </ul>
+  <fa-icon [icon]="faCaretSquareDown" (click)="toggleNav=!toggleNav"></fa-icon>
+</div>

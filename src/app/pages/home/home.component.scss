@@ -1,0 +1,144 @@
+.banner {
+  max-width: 1640px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  height: 100vh;
+  padding: 130px 15px 0px 15px;
+  &-info {
+    width: 50%;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+  &-title {
+    font-size: 90px;
+    font-family: var(--bold);
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 60px;
+    & span {
+      font-family: var(--regular);
+      display: block;
+      color: var(--gray);
+    }
+  }
+  &-desc {
+    font-size: 24px;
+    line-height: 1.5;
+    max-width: 80%;
+    margin-bottom: 50px;
+    color: var(--gray);
+  }
+  &-text {
+    font-family: var(--ultra);
+    font-size: 16px;
+    color: white;
+    margin-bottom: 25px;
+  }
+  &-download {
+    display: flex;
+    margin-bottom: 30px;
+    column-gap: 20px;
+    &-img {
+      width: 190px;
+      height: 53px;
+      border: 3px solid #232a4e;
+      border-radius: 15px;
+      display: inline-block;
+      cursor: pointer;
+     
+    }
+  }
+}
+.banner-groupImg {
+  width: 50%;
+  height: 100%;
+}
+.groupImg-main {
+  width: calc((95vh - 160px) / 2);
+  height: calc(95vh - 160px);
+  position: relative;
+  margin: 0 auto;
+}
+.banner-img {
+  &-equa {
+    max-width: 360%;
+    width: 360%;
+    z-index: 0;
+    left: 100%;
+  }
+  &-1 {
+  }
+  &-2 {
+    width: 80%;
+    top: 70%;
+    left: 60%;
+  }
+  &-3 {
+    width: 30%;
+    top: 85%;
+    left: 5%;
+  }
+  &-4 {
+    width: 60%;
+    top: 85%;
+    left: -10%;
+  }
+}
+@media screen and (max-width: 1680px) {
+  .banner-title {
+    font-size: 60px;
+  }
+  .banner-desc {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 1026px) {
+  .banner-title {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+  .banner-desc {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 770px) {
+  .banner {
+    flex-direction: column;
+    &-info {
+      order: 2;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .banner-img-equa {
+    left: 40%;
+  }
+}
+@media screen and (max-width: 482px) {
+  .banner {
+    &-groupImg {
+      width: 75%;
+    }
+  }
+}
+@media screen and (max-width: 420px) {
+  .banner {
+    &-download{
+      flex-direction: column;
+      row-gap: 30px;
+    }
+  }
+  .banner-title {
+    font-size: 35px;
+    margin-bottom: 50px;
+  }
+  .banner-desc {
+    font-size: 16px;
+  }
+}

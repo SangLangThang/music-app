@@ -1,0 +1,61 @@
+<div class="music">
+  <div class="music-info">
+    <div class="music-groupInput">
+      <input
+        type="text"
+        class="music-info-input"
+        placeholder="Enter keyword or URL"
+      />
+      <button class="music-info-btn">
+        <img [src]="searchIcon" alt="" />
+      </button>
+    </div>
+    <div class="music-line">
+      <img [src]="wave" alt="" />
+    </div>
+    <div class="music-title">
+      <span>Search Music by </span>
+      Name or Direct URL
+    </div>
+    <div class="music-text">
+      Duis feugiat congue metus, ultrices vulputate nibh viverra eget.
+      Vestibulum ullamcorper volutpat varius.
+    </div>
+
+    <div class="playlists">
+      <div class="playlist-top">
+        <img [src]="musicAvatar" alt="" class="playlist-img" />
+        <div class="playlist-info">
+          <p class="playlist-name">Tristam_Bone_Dry</p>
+          <p class="playlist-artist">Unknown Artist</p>
+        </div>
+        <img [src]="musicList" alt="" class="playlist-list" />
+      </div>
+      <div class="playlist-bot">
+        <div class="playlist-time">
+          <span class="playlist-time-start">2:30</span>
+          <img [src]="musicTime" alt="" />
+          <span class="playlist-time-end">2:30</span>
+        </div>
+        <div class="playlist-action">
+          <img [src]="musicBack" alt="" class="playlist-back" />
+          <img [src]="musicPlay" alt="" class="playlist-play" />
+          <img
+            [src]="musicForward"
+            alt=""
+            class="playlist-forward"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="music-groupImg">
+    <div class="groupImg-main">
+      <img [src]="EqualizerBack" alt="" class="music-img-equa abscenter" />
+      <img [src]="music1" alt="" class="music-img-1 abscenter" />
+      <img [src]="music2" alt="" class="music-img-2 abscenter" />
+      <img [src]="music3" alt="" class="music-img-3 abscenter" />
+      <img [src]="music4" alt="" class="music-img-4 abscenter" />
+    </div>
+  </div>
+</div>

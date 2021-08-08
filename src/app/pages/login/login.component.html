@@ -1,0 +1,69 @@
+<div class="contain">
+  <div class="login">
+    <div class="login-icon">
+      <img [src]="wave" alt="" />
+    </div>
+    <div class="login-title">Log In</div>
+    <form
+      action=""
+      class="form"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="loginForm"
+    >
+      <div class="form-item">
+        <div class="label"><label for="email">Email</label></div>
+        <div class="input">
+          <!-- (keydown.space)="$event.preventDefault();"  ==> Prevent user to enter space in textbox -->
+          <input
+            type="text"
+            formControlName="email"
+            id="email"
+            placeholder="Email"
+          />
+
+          <div
+            class="error"
+            *ngIf="
+              loginForm.get('email')?.errors && loginForm.get('email')?.touched
+            "
+          >
+            <span>Error</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="label">
+          <label for="password">Password</label>
+        </div>
+
+        <div class="input">
+          <input
+            type="password"
+            formControlName="password"
+            id="password"
+            placeholder="Password"
+          />
+          <div
+            class="error"
+            *ngIf="
+              loginForm.get('password')?.errors &&
+              loginForm.get('password')?.touched
+            "
+          >
+            <span>Error</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-item groupBtn">
+        <p></p>
+        <div class="action">
+          <button type="submit" class="btn">Log In</button>
+           <span> Not a member ?
+            <a routerLink="/login"> Sign Up Now</a>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

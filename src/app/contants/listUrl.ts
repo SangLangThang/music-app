@@ -1,0 +1,24 @@
+export const logo = '../../../assets/images/MuziqLogo.png';
+export const GooglePlay = '../../../assets/images/GooglePlay.png';
+export const AppStore = '../../../assets/images/AppStore.png';
+export const EqualizerBack =
+  '../../../assets/images/EqualizerBack-graphics.png';
+export const banner1 = '../../../assets/images/banner-1.png';
+export const banner2 = '../../../assets/images/banner-2.png';
+export const banner3 = '../../../assets/images/banner-3.png';
+export const banner4 = '../../../assets/images/banner-4.png';
+export const wave = '../../../assets/images/wave-line.png';
+export const about1 = '../../../assets/images/ex-1.png';
+export const about2 = '../../../assets/images/ex-2.png';
+export const about3 = '../../../assets/images/ex-3.png';
+export const music1 = '../../../assets/images/search-1.png';
+export const music2 = '../../../assets/images/search-2.png';
+export const music3 = '../../../assets/images/search-3.png';
+export const music4 = '../../../assets/images/search-4.png';
+export const musicAvatar = '../../../assets/images/music-avatar.png';
+export const musicList = '../../../assets/images/music-list.png';
+export const musicTime = '../../../assets/images/music-time.png';
+export const musicBack = '../../../assets/images/music-back.png';
+export const musicForward = '../../../assets/images/music-forward.png';
+export const musicPlay = '../../../assets/images/music-play.png';
+export const searchIcon = '../../../assets/images/search-icon.png';

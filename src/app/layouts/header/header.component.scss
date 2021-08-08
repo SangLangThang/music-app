@@ -1,0 +1,23 @@
+.header {
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+  background-color: var(--primary-color);
+  z-index: 100;
+  max-width: 1640px;
+  &-logo {
+    width: 48px;
+    height: 51px;
+    cursor: pointer;
+  }
+  &-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+  }
+}
+
