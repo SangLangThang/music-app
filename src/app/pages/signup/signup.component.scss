@@ -12,7 +12,9 @@
   flex-direction: column;
 
   width: 80%;
+  max-width: 1200px;
   height: 100%;
+  max-height: 725px;
 
   background-color: var(--black);
   margin: 0 auto;
@@ -66,18 +68,23 @@
         padding: 15px 0px 15px 15px;
         background-color: var(--primary-color);
         font-size: 20px;
-        font-family: var(--ultra);
+        font-family: var(--regular);
         color: white;
         outline: none;
         border: none;
         border-radius: 20px;
       }
-      span {
+      .group-error {
         position: absolute;
         bottom: -50%;
         left: 10px;
+        .error {
         color: rgb(247, 173, 173);
+        margin-right: 5px;
+        display: inline-block;
       }
+      }
+     
     }
   }
 }
@@ -106,6 +113,9 @@
   border-radius: 10px;
   padding: 15px 22px;
   background-color: transparent;
+  &:disabled{
+    color: var(--gray);
+  }
   &:hover {
     background-color: white;
     color: var(--primary-color);

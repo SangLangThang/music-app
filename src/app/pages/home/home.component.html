@@ -1,29 +1,76 @@
-<div class="banner">
-  <div class="banner-info">
-    <div class="banner-title">
-      <h1><span>Experience The</span>Best Quality Music</h1>
-    </div>
-    <p class="banner-desc section-text">
-      Donec laoreet nec velit vitae aliquam. Ut quis tincidunt purus.
-      Suspendisse in leo non risus tincidunt lobortis.
-    </p>
-    <p class="banner-text">Download now on iOS and Android</p>
-    <div class="banner-download">
-      <div class="banner-download-img">
-        <img [src]="AppStore" alt="" />
+<div class="container">
+  <div class="banner">
+    <div class="banner-info">
+      <div class="banner-title">
+        <h1><span>Experience The</span>Best Quality Music</h1>
       </div>
-      <div class="banner-download-img">
-        <img [src]="GooglePlay" alt="" />
+      <p class="banner-desc section-text">
+        Donec laoreet nec velit vitae aliquam. Ut quis tincidunt purus.
+        Suspendisse in leo non risus tincidunt lobortis.
+      </p>
+      <p class="banner-text">Download now on iOS and Android</p>
+      <div class="banner-download">
+        <div class="banner-download-img">
+          <img [src]="AppStore" alt="" />
+        </div>
+        <div class="banner-download-img">
+          <img [src]="GooglePlay" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="banner-groupImg">
+      <div class="groupImg-main">
+        <img [src]="EqualizerBack" alt="" class="banner-img-equa abscenter" [class.move]="toggle" />
+        <img [src]="banner1" alt="" class="banner-img-1 abscenter" />
+        <img [src]="banner2" alt="" class="banner-img-2 abscenter" #start/>
+        <img [src]="banner3" alt="" class="banner-img-3 abscenter" />
+        <img [src]="banner4" alt="" class="banner-img-4 abscenter" />
       </div>
     </div>
   </div>
-  <div class="banner-groupImg">
-    <div class="groupImg-main">
-      <img [src]="EqualizerBack" alt="" class="banner-img-equa abscenter" />
-      <img [src]="banner1" alt="" class="banner-img-1 abscenter" />
-      <img [src]="banner2" alt="" class="banner-img-2 abscenter" />
-      <img [src]="banner3" alt="" class="banner-img-3 abscenter" />
-      <img [src]="banner4" alt="" class="banner-img-4 abscenter" />
+
+  <div class="about">
+    <div class="about-icon">
+      <img [src]="wave" alt="" />
+    </div>
+    <div class="about-title">
+      <span>An Amazing App Can Change Your Daily Life </span>
+      Music Experience
+    </div>
+    <div class="about-boxs">
+      <div class="about-box">
+        <div class="about-box-img">
+          <img [src]="about1" alt="" />
+        </div>
+        <div class="about-box-title">For Live Music</div>
+        <div class="about-box-desc section-text">
+          Donec laoreet nec velit vitae aliquam. Ut quis tincidunt purus.
+          Suspendisse.
+        </div>
+        <a class="about-box-link" href="#"> Learn more </a>
+      </div>
+      <div class="about-box">
+        <div class="about-box-img">
+          <img [src]="about2" alt="" />
+        </div>
+        <div class="about-box-title">For Daily Music</div>
+        <div class="about-box-desc section-text">
+          Nunc elementum, dolor vitae lacinia pulvinar, augue felis scelerisque
+          libero, sit amet laoreet lorem.
+        </div>
+        <a class="about-box-link" href="#"> Learn more </a>
+      </div>
+      <div class="about-box">
+        <div class="about-box-img">
+          <img [src]="about3" alt="" />
+        </div>
+        <div class="about-box-title">For Artists</div>
+        <div class="about-box-desc section-text">
+          Cras ullamcorper nisi accumsan, porta nulla nec, suscipit nibh. Nullam
+          bibendum, diam eu vestibulum imperdiet
+        </div>
+        <a class="about-box-link" href="#"> Learn more </a>
+      </div>
     </div>
   </div>
 </div>

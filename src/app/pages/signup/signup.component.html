@@ -11,24 +11,25 @@
       [formGroup]="signUpForm"
     >
       <div class="form-item">
-        <div class="label"><label for="email">Email</label></div>
+        <div class="label"><label for="name">Name</label></div>
         <div class="input">
           <!-- (keydown.space)="$event.preventDefault();"  ==> Prevent user to enter space in textbox -->
           <input
             type="text"
-            formControlName="email"
-            id="email"
-            placeholder="Email"
+            formControlName="name"
+            id="name"
+            placeholder="Name"
           />
-
-          <div
-            class="error"
-            *ngIf="
-              signUpForm.get('email')?.errors &&
-              signUpForm.get('email')?.touched
-            "
-          >
-            <span>Error</span>
+          <div class="group-error">
+            <div
+              class="error"
+              *ngIf="
+                signUpForm.get('name')?.errors &&
+                signUpForm.get('name')?.touched
+              "
+            >
+              <span>{{ signUpForm.get("name")?.errors | json }} </span>
+            </div>
           </div>
         </div>
       </div>
@@ -36,12 +37,12 @@
         <div class="label">
           <label for="password">Password</label>
           <div class="label-icon" *ngIf="checkPassword">
-            <fa-icon [icon]="faLock" [style.color]="bar0"></fa-icon>
-            <fa-icon [icon]="faLock" [style.color]="bar0"></fa-icon>
-            <fa-icon [icon]="faLock" [style.color]="bar1"></fa-icon>
-            <fa-icon [icon]="faLock" [style.color]="bar1"></fa-icon>
-            <fa-icon [icon]="faLock" [style.color]="bar2"></fa-icon>
-            <fa-icon [icon]="faLock" [style.color]="bar2"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="lockColor.color1"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="lockColor.color1"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="lockColor.color2"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="lockColor.color2"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="lockColor.color3"></fa-icon>
+            <fa-icon [icon]="faLock" [style.color]="lockColor.color3"></fa-icon>
           </div>
         </div>
 
@@ -54,14 +55,16 @@
             [(ngModel)]="checkPassword"
             (ngModelChange)="checkStrongPassword($event)"
           />
-          <div
-            class="error"
-            *ngIf="
-              signUpForm.get('password')?.errors &&
-              signUpForm.get('password')?.touched
-            "
-          >
-            <span>Error</span>
+          <div class="group-error">
+            <div
+              class="error"
+              *ngIf="
+                signUpForm.get('password')?.errors &&
+                signUpForm.get('password')?.touched
+              "
+            >
+              <span>Error</span>
+            </div>
           </div>
         </div>
       </div>
@@ -73,27 +76,39 @@
             formControlName="confirm"
             id="confirm"
             placeholder="Confirm Password"
+            (blur)="checkMatchPassword($event)"
           />
-          <div
-            class="error"
-            *ngIf="
-              signUpForm.get('confirm')?.errors &&
-              signUpForm.get('confirm')?.touched
-            "
-          >
-            <span>Error</span>
+
+          <div class="group-error">
+            <div
+              class="error"
+              *ngIf="
+                signUpForm.get('confirm')?.touched &&
+                signUpForm.get('confirm')?.errors
+              "
+            >
+              <span>Required confirm password</span>
+            </div>
+            <div
+              class="error"
+              *ngIf="signUpForm.get('confirm')?.touched && !matchPassword"
+            >
+              <span>Password not match</span>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-item groupBtn">
         <p></p>
         <div class="action">
-          <button type="submit" class="btn">Create account</button>
-          <span>Already an account ? 
+          <button type="submit" class="btn" [disabled]="signUpForm.invalid">Create account</button>
+          <span
+            >Already an account ?
             <a routerLink="/login"> Log In</a>
           </span>
         </div>
       </div>
     </form>
+    <!--  <pre>{{ signUpForm.get('name')?.errors | json }}</pre> -->
   </div>
 </div>

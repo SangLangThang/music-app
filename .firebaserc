@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "music-app-df2d4": {
+      "hosting": {
+        "music-app": [
+          "music-app-df2d4"
+        ]
+      }
+    }
+  }
+}
