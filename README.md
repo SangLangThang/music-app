@@ -13,5 +13,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 ## Link
-[MIT](https://music-app-df2d4.web.app/)
+[Link to app](https://music-app-df2d4.web.app/)
 
