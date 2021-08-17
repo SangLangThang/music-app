@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  AngularFirestoreDocument,
 } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
-import { from, Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,13 +18,15 @@ export class AuthService {
   getLists() {
     return this.usersRef.valueChanges();
   }
-
+  getCollect(){
+    return this.usersRef
+  }
   create(user: User): any {
     this.usersRef
       .valueChanges()
       .pipe(take(1))
       .subscribe((lists) => {
-        if (lists.filter((i) => i.name === user.name).length === 0) {
+        if (lists.filter((i) => i.username === user.username).length === 0) {
           console.log('finish register');
           this.usersRef.add({ ...user });
         } else {
@@ -34,15 +34,8 @@ export class AuthService {
         }
       });
   }
-  login(user: User): any {
-    return [
-      ...this.lists.filter((e) => {
-        return e.name === user.name && e.password === user.password;
-      }),
-    ].length === 1
-      ? true
-      : false;
-  }
+  
+  
 
   update(id: string, data: any): Promise<void> {
     return this.usersRef.doc(id).update(data);
@@ -50,6 +43,6 @@ export class AuthService {
 }
 
 interface User {
-  name: string;
+  username: string;
   password: string;
 }

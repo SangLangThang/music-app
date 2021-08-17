@@ -1,56 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-  Form,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { wave } from 'src/app/contants/listUrl';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authservice: AuthService,
+    private router: Router
+  ) {}
   wave = wave;
+  loginFail: boolean = false;
   loginForm!: FormGroup;
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [
+      username: [
         null,
-        [
-          Validators.required,
-          Validators.pattern(/^[*]{6,32}$/i),
-          /*  NoWhitespaceValidator(), */
-        ],
+        [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{6,32}$/i)],
       ],
       password: [null, [Validators.required]],
     });
   }
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('form submitted');
-      console.log(this.loginForm.value);
-    } else {
-      this.validateAllFormFields(this.loginForm);
+      this.authservice.getLists().subscribe((lists) => {
+        if (
+          lists.filter(
+            (i) =>
+              i.username === this.loginForm.value.username &&
+              i.password === this.loginForm.value.password
+          ).length === 1
+        ) {
+          console.log('Login finish');
+          this.router.navigateByUrl('/home');
+        } else {
+          console.log('Login Fail');
+          this.loginFail = true;
+        }
+      });
     }
-  }
-  isFieldValid(field: string) {
-    return (
-      this.loginForm.get(field)?.errors && this.loginForm.get(field)?.touched
-    );
-  }
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      console.log('validate:', field);
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
   }
 }

@@ -1,13 +1,16 @@
+.container {
+  width: 100%;
+  max-width: 1920px;
+  overflow: hidden;
+}
 .music {
   max-width: 1640px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
 
-  height: 100vh;
   padding: 130px 15px 0px 15px;
-  column-gap: 100px;
-
+  margin: 0 auto;
   &-title {
     font-size: 40px;
     font-family: var(--bold);

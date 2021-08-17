@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
-  FormControl,
-  Validators,
-  AbstractControl,
   ValidationErrors,
+  Validators,
 } from '@angular/forms';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { wave } from 'src/app/contants/listUrl';
-import { ValidateService } from 'src/app/services/validate.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { Observable, timer } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { wave } from 'src/app/contants/listUrl';
+import { AuthService } from 'src/app/services/auth.service';
+import { ValidateService } from 'src/app/services/validate.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -23,18 +23,15 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private validateService: ValidateService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
-      name: [
+      username: [
         null,
-        [
-          Validators.required,
-          Validators.pattern(/^[a-zA-Z0-9]{6,32}$/i),
-          /* this.validateService.checkName(), */
-        ],
+        [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{6,32}$/i)],
         this.validateUserNameFromAPIDebounce.bind(this),
       ],
       password: [null, [Validators.required]],
@@ -45,10 +42,6 @@ export class SignupComponent implements OnInit {
   wave = wave;
   faLock = faLock;
   signUpForm!: FormGroup;
-
-  strongPassword = new RegExp(
-    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})'
-  );
 
   checkPassword: string = '';
 
@@ -71,45 +64,21 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     if (this.signUpForm.valid && this.matchPassword) {
-      console.log('form submitted', this.signUpForm.value);
-      this.authService.create({
-        name: this.signUpForm.value.name,
-        password: this.signUpForm.value.password,
+      this.authService.getLists().subscribe((lists) => {
+        if (
+          lists.filter((i) => i.username === this.signUpForm.value.username)
+            .length === 0
+        ) {
+          this.authService.getCollect().add({
+            username: this.signUpForm.value.username,
+            password: this.signUpForm.value.password,
+          });
+          this.router.navigateByUrl('/login');
+        }
       });
-    } else {
-      this.validateAllFormFields(this.signUpForm);
     }
   }
-  isFieldValid(field: string) {
-    return (
-      this.signUpForm.get(field)?.errors && this.signUpForm.get(field)?.touched
-    );
-  }
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      console.log('validate:', field);
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-  validateUserNameFromAPI(
-    control: AbstractControl
-  ): Observable<ValidationErrors | null> {
-    return this.validateService.validateUsername(control.value).pipe(
-      map((isValid) => {
-        if (isValid) {
-          return null;
-        }
-        return {
-          usernameDuplicated: true,
-        };
-      })
-    );
-  }
+
   validateUserNameFromAPIDebounce(
     control: AbstractControl
   ): Observable<ValidationErrors | null> {

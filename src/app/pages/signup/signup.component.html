@@ -1,4 +1,4 @@
-<div class="contain">
+<div class="container">
   <div class="signup">
     <div class="signup-icon">
       <img [src]="wave" alt="" />
@@ -11,25 +11,41 @@
       [formGroup]="signUpForm"
     >
       <div class="form-item">
-        <div class="label"><label for="name">Name</label></div>
+        <div class="label"><label for="username">Name</label></div>
         <div class="input">
           <!-- (keydown.space)="$event.preventDefault();"  ==> Prevent user to enter space in textbox -->
           <input
             type="text"
-            formControlName="name"
-            id="name"
-            placeholder="Name"
+            formControlName="username"
+            id="username"
+            placeholder="Username"
           />
-          <div class="group-error">
-            <div
-              class="error"
-              *ngIf="
-                signUpForm.get('name')?.errors &&
-                signUpForm.get('name')?.touched
-              "
-            >
-              <span>{{ signUpForm.get("name")?.errors | json }} </span>
-            </div>
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('username')?.errors?.required &&
+              signUpForm.get('username')?.touched
+            "
+          >
+            <span>Username is required </span>
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('username')?.errors?.pattern &&
+              signUpForm.get('username')?.touched
+            "
+          >
+            <span>Username more than 6 char </span>
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('username')?.errors?.usernameDuplicated &&
+              signUpForm.get('username')?.touched
+            "
+          >
+            <span>Username cant use </span>
           </div>
         </div>
       </div>
@@ -55,16 +71,15 @@
             [(ngModel)]="checkPassword"
             (ngModelChange)="checkStrongPassword($event)"
           />
-          <div class="group-error">
-            <div
-              class="error"
-              *ngIf="
-                signUpForm.get('password')?.errors &&
-                signUpForm.get('password')?.touched
-              "
-            >
-              <span>Error</span>
-            </div>
+
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('password')?.errors &&
+              signUpForm.get('password')?.touched
+            "
+          >
+            <span>Password is required</span>
           </div>
         </div>
       </div>
@@ -79,29 +94,29 @@
             (blur)="checkMatchPassword($event)"
           />
 
-          <div class="group-error">
-            <div
-              class="error"
-              *ngIf="
-                signUpForm.get('confirm')?.touched &&
-                signUpForm.get('confirm')?.errors
-              "
-            >
-              <span>Required confirm password</span>
-            </div>
-            <div
-              class="error"
-              *ngIf="signUpForm.get('confirm')?.touched && !matchPassword"
-            >
-              <span>Password not match</span>
-            </div>
+          <div
+            class="error"
+            *ngIf="
+              signUpForm.get('confirm')?.touched &&
+              signUpForm.get('confirm')?.errors
+            "
+          >
+            <span>Required confirm password</span>
+          </div>
+          <div
+            class="error"
+            *ngIf="signUpForm.get('confirm')?.touched && !matchPassword"
+          >
+            <span>Password not match</span>
           </div>
         </div>
       </div>
       <div class="form-item groupBtn">
         <p></p>
         <div class="action">
-          <button type="submit" class="btn" [disabled]="signUpForm.invalid">Create account</button>
+          <button type="submit" class="btn" [disabled]="signUpForm.invalid">
+            Create account
+          </button>
           <span
             >Already an account ?
             <a routerLink="/login"> Log In</a>

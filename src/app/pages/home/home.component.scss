@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 100%;
   max-width: 1920px;
   overflow: hidden;
@@ -8,7 +8,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  
+
   padding: 130px 15px 0px 15px;
   margin: 0 auto;
   &-info {
@@ -53,7 +53,6 @@
       border-radius: 15px;
       display: inline-block;
       cursor: pointer;
-     
     }
   }
 }
@@ -135,7 +134,7 @@
 }
 @media screen and (max-width: 420px) {
   .banner {
-    &-download{
+    &-download {
       flex-direction: column;
       row-gap: 30px;
     }
@@ -154,7 +153,7 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  margin:50px 0;
+  margin: 50px 0;
   &-icon {
     margin-bottom: 30px;
   }
@@ -201,7 +200,18 @@
     width: fit-content;
   }
 }
-
-.move{
+@media screen and (max-width: 377px) {
+  .about{
+    &-boxs{
+      flex-direction: column;
+      row-gap: 20px;
+    }
+    &-box{
+      width: 100%;
+    }
+  }
+  
+}
+.move {
   left: 80%;
 }

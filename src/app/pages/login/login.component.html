@@ -1,9 +1,11 @@
-<div class="contain">
+<div class="container">
+ 
   <div class="login">
     <div class="login-icon">
       <img [src]="wave" alt="" />
     </div>
     <div class="login-title">Log In</div>
+      <p class="login-fail" *ngIf="loginFail">Username or Password not correct</p>
     <form
       action=""
       class="form"
@@ -11,23 +13,23 @@
       [formGroup]="loginForm"
     >
       <div class="form-item">
-        <div class="label"><label for="email">Email</label></div>
+        <div class="label"><label for="username">UserName</label></div>
         <div class="input">
           <!-- (keydown.space)="$event.preventDefault();"  ==> Prevent user to enter space in textbox -->
           <input
             type="text"
-            formControlName="email"
-            id="email"
-            placeholder="Email"
+            formControlName="username"
+            id="username"
+            placeholder="Username"
           />
 
           <div
             class="error"
             *ngIf="
-              loginForm.get('email')?.errors && loginForm.get('email')?.touched
+              loginForm.get('username')?.errors && loginForm.get('username')?.touched
             "
           >
-            <span>Error</span>
+            <span>Username is required</span>
           </div>
         </div>
       </div>
@@ -50,7 +52,7 @@
               loginForm.get('password')?.touched
             "
           >
-            <span>Error</span>
+            <span>Password is required</span>
           </div>
         </div>
       </div>
@@ -58,7 +60,7 @@
       <div class="form-item groupBtn">
         <p></p>
         <div class="action">
-          <button type="submit" class="btn">Log In</button>
+          <button type="submit" class="btn"[disabled]='loginForm.invalid'>Log In</button>
            <span> Not a member ?
             <a routerLink="/signup"> Sign Up Now</a>
           </span>
